@@ -27,6 +27,7 @@ Please adjust the IMS_PER_BATCH in the config file according to the GPU memory.
 
 
 ## Inference
+First replace the original detectron2 installed postprocessing.py with the [file](https://github.com/gakkiri/SOLOv2-detectron2/blob/master/postprocessing.py).
 
 Single GPU:
 ```
