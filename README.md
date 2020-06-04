@@ -32,7 +32,7 @@ python train_net.py --config-file configs/MS_R_50_2x.yaml --eval-only MODEL.WEIG
 ```
 Multi GPU(for example 8):
 ```
-python train_net.py --num-gpus 8 --config-file configs/EmbedMask/MS_R_101_3x.yaml --eval-only MODEL.WEIGHTS /path/to/checkpoint_file
+python train_net.py --num-gpus 8 --config-file configs/MS_R_50_2x.yaml --eval-only MODEL.WEIGHTS /path/to/checkpoint_file
 ```
 
 ## Results 
