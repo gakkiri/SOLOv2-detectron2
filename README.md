@@ -42,5 +42,7 @@ python train_net.py --num-gpus 8 --config-file configs/MS_R_50_2x.yaml --eval-on
 ```
 
 ## Results 
+### 2020/6/4
+#### MS_R_50_2x.yaml
 ![box](https://raw.githubusercontent.com/gakkiri/SOLOv2-detectron2/master/img/box50.png?x-oss-Process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDk3ODQ1,size_16,color_FFFFFF,t_70)
 ![seg](https://raw.githubusercontent.com/gakkiri/SOLOv2-detectron2/master/img/mask50.png?x-oss-Process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDk3ODQ1,size_16,color_FFFFFF,t_70)  
