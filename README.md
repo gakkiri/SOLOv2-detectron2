@@ -3,15 +3,15 @@ Unofficial implementation for [SOLOv2: Dynamic, Faster and Stronger](https://arx
 
 
 ## Log
-#### 2020/6/4
-There are still a few bugs, "Person" is completely ignored, so performance should be higher than it is now.  
-Like this:  
-![box](https://raw.githubusercontent.com/gakkiri/SOLOv2-detectron2/master/img/bug.png)
-Now training code has been fixed, and the inference will not be affected.  
-
+#### 2020/6/4  
 |config|bbox|mask|weight|
 |-|:-:|-:|-:|
 |MS_R_50_2x.yaml|37.486|35.953|[google drive](https://drive.google.com/file/d/1BFTtOOcheJBbxp7Bkk-hgs2SNh2upIIr/view?usp=sharing)|
+
+There are still a few bugs, "Person" is completely ignored, so performance should be higher than it is now.  
+Like this:  
+![box](https://raw.githubusercontent.com/gakkiri/SOLOv2-detectron2/master/img/bug.png)  
+Now training code has been fixed, and the inference will not be affected.
 
 ## Install
 The code is based on [detectron2](https://github.com/facebookresearch/detectron2). Please check [Install.md](https://github.com/facebookresearch/detectron2/blob/master/INSTALL.md) for installation instructions.
