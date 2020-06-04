@@ -1,6 +1,6 @@
 # SOLOv2-detectron2
 Unofficial implementation for [SOLOv2: Dynamic, Faster and Stronger](https://arxiv.org/abs/2003.10152) instance segmentation.  
-There are still a few bugs.
+There are still a few bugs, "person" is completely ignored, so performance should be higher than it is now.  
 
 |config|bbox|mask|weight|
 |-|:-:|-:|-:|
