@@ -19,11 +19,11 @@ class SOLOv2(nn.Module):
         super().__init__()
 
         self.cfg = cfg
+        self.cate_out_channels = cfg.MODEL.SOLOV2.NUM_CLASSES
         self.in_features = cfg.MODEL.SOLOV2.IN_FEATURES
         self.scale_ranges = cfg.MODEL.SOLOV2.SCALE_RANGES
         self.strides = cfg.MODEL.SOLOV2.STRIDES
         self.seg_num_grids = cfg.MODEL.SOLOV2.NUM_GRIDS
-        self.cate_out_channels = cfg.MODEL.SOLOV2.NUM_CLASSES
         self.sigma = cfg.MODEL.SOLOV2.SIGMA
 
         self.head = SOLOV2_head(cfg)
@@ -83,7 +83,7 @@ class SOLOv2(nn.Module):
                 continue
             gt_bboxes = gt_bboxes_raw[hit_indices]
             gt_labels = gt_labels_raw[hit_indices]
-            gt_masks = gt_masks_raw[hit_indices.cpu().numpy(), ...].cpu().numpy()
+            gt_masks = gt_masks_raw[hit_indices.cpu().numpy(), ...].cpu().numpy().astype(np.uint8)
 
             half_ws = 0.5 * (gt_bboxes[:, 2] - gt_bboxes[:, 0]) * self.sigma
             half_hs = 0.5 * (gt_bboxes[:, 3] - gt_bboxes[:, 1]) * self.sigma
@@ -165,20 +165,20 @@ class SOLOv2(nn.Module):
                        for cate_labels_level_img in cate_labels_level])
             for cate_labels_level in zip(*cate_label_list)
         ]
-        flatten_cate_labels = torch.cat(cate_labels)  # [7767]
+        flatten_cate_labels = torch.cat(cate_labels)
 
         cate_preds = [
             cate_pred.permute(0, 2, 3, 1).reshape(-1, self.cate_out_channels)
             for cate_pred in cate_preds
         ]
-        flatten_cate_preds = torch.cat(cate_preds)  # [7767, 80]
+        flatten_cate_preds = torch.cat(cate_preds)
 
         # prepare one_hot
         flatten_cate_labels_oh = torch.zeros_like(flatten_cate_preds)
         pos_ind = flatten_cate_labels.gt(0)
         flatten_cate_labels_oh[pos_ind, flatten_cate_labels[pos_ind].long()] = 1.
 
-        loss_cate = self.focal_loss(flatten_cate_preds, flatten_cate_labels_oh, avg_factor=num_ins+1)
+        loss_cate = self.focal_loss(flatten_cate_preds, flatten_cate_labels_oh, avg_factor=num_ins + 1)
 
         return {
                    'loss_ins': loss_ins,
