@@ -72,7 +72,9 @@ class SOLOv2(nn.Module):
                 in zip(self.scale_ranges, self.strides, featmap_sizes, self.seg_num_grids):
 
             ins_label = torch.zeros([num_grid ** 2, featmap_size[0], featmap_size[1]], dtype=torch.uint8, device=device)
+            # NOTE: gt_labels_raw between 0~79.
             cate_label = torch.zeros([num_grid, num_grid], dtype=torch.int64, device=device)
+            cate_label[cate_label == cate_label] = -1
             ins_ind_label = torch.zeros([num_grid ** 2], dtype=torch.bool, device=device)
 
             hit_indices = ((gt_areas >= lower_bound) & (gt_areas <= upper_bound)).nonzero().flatten()
@@ -165,17 +167,17 @@ class SOLOv2(nn.Module):
                        for cate_labels_level_img in cate_labels_level])
             for cate_labels_level in zip(*cate_label_list)
         ]
-        flatten_cate_labels = torch.cat(cate_labels)
+        flatten_cate_labels = torch.cat(cate_labels)  # [n]
 
         cate_preds = [
             cate_pred.permute(0, 2, 3, 1).reshape(-1, self.cate_out_channels)
             for cate_pred in cate_preds
         ]
-        flatten_cate_preds = torch.cat(cate_preds)
+        flatten_cate_preds = torch.cat(cate_preds)  # [n, 80]
 
         # prepare one_hot
         flatten_cate_labels_oh = torch.zeros_like(flatten_cate_preds)
-        pos_ind = flatten_cate_labels.gt(0)
+        pos_ind = flatten_cate_labels >= 0
         flatten_cate_labels_oh[pos_ind, flatten_cate_labels[pos_ind].long()] = 1.
 
         loss_cate = self.focal_loss(flatten_cate_preds, flatten_cate_labels_oh, avg_factor=num_ins + 1)
