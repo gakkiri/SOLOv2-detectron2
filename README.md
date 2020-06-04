@@ -8,9 +8,6 @@ Unofficial implementation for [SOLOv2: Dynamic, Faster and Stronger](https://arx
 ## Install
 The code is based on [detectron2](https://github.com/facebookresearch/detectron2). Please check [Install.md](https://github.com/facebookresearch/detectron2/blob/master/INSTALL.md) for installation instructions.
 
-## Install
-The code is based on [detectron2](https://github.com/facebookresearch/detectron2). Please check [Install.md](https://github.com/facebookresearch/detectron2/blob/master/INSTALL.md) for installation instructions.
-
 
 ## Training 
 Follows the same way as detectron2.
