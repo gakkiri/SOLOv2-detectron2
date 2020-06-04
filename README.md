@@ -1,5 +1,5 @@
 # SOLOv2-detectron2
-Unofficial implementation for [SOLOv2: Dynamic, Faster and Stronger](https://arxiv.org/abs/2003.10152) instance segmentation.
+Unofficial implementation for [SOLOv2: Dynamic, Faster and Stronger](https://arxiv.org/abs/2003.10152) instance segmentation.  
 There are still a few bugs.
 
 |config|bbox|mask|weight|
