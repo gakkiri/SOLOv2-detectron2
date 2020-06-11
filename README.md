@@ -43,6 +43,15 @@ Multi GPU(for example 8):
 python train_net.py --num-gpus 8 --config-file configs/MS_R_50_2x.yaml --eval-only MODEL.WEIGHTS /path/to/checkpoint_file
 ```
 
+## Demo
+```
+cd demo/
+python demo.py --config-file ../configs/MS_R_50_2x.yaml \
+  --input /path/to/input_image \
+  [--other-options]
+  --opts MODEL.WEIGHTS /path/to/checkpoint_file
+```
+
 ## Results 
 ### 2020/6/4
 #### MS_R_50_2x.yaml
