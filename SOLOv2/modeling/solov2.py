@@ -74,7 +74,7 @@ class SOLOv2(nn.Module):
             ins_label = torch.zeros([num_grid ** 2, featmap_size[0], featmap_size[1]], dtype=torch.uint8, device=device)
             # NOTE: gt_labels_raw between 0~79.
             cate_label = torch.zeros([num_grid, num_grid], dtype=torch.int64, device=device)
-            cate_label[cate_label == cate_label] = -1
+            cate_label = torch.fill_(cate_label, -1.)
             ins_ind_label = torch.zeros([num_grid ** 2], dtype=torch.bool, device=device)
 
             hit_indices = ((gt_areas >= lower_bound) & (gt_areas <= upper_bound)).nonzero().flatten()
