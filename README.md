@@ -3,6 +3,9 @@ Unofficial implementation for [SOLOv2: Dynamic, Faster and Stronger](https://arx
 
 
 ## Log
+#### 2020/6/12
+At present, there are some bugs in the training code, leading to poor performance. Due to the lack of GPU, it is difficult to timely fix these bugs, **so we should use it carefully**.  
+
 #### 2020/6/4  
 |config|bbox|mask|weight|
 |-|:-:|-:|-:|
