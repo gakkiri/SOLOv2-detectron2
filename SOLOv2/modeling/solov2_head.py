@@ -26,6 +26,7 @@ class SOLOV2_head(nn.Module):
         self.cate_down_pos = cfg.MODEL.SOLOV2.CATE_DOWN_POS
 
         self._init_layers()
+        self.init_weight()
 
     def _init_layers(self):
         self.feature_convs = nn.ModuleList()
@@ -103,10 +104,10 @@ class SOLOV2_head(nn.Module):
                     torch.nn.init.constant_(m[i][0].weight, 0)
         for m in self.kernel_convs:
             torch.nn.init.normal_(m[0].weight, std=0.01)
-            torch.nn.init.constant_(m[i][0].weight, 0)
+            torch.nn.init.constant_(m[0].weight, 0)
         for m in self.cate_convs:
             torch.nn.init.normal_(m[0].weight, std=0.01)
-            torch.nn.init.constant_(m[i][0].weight, 0)
+            torch.nn.init.constant_(m[0].weight, 0)
 
         prior_prob = self.cfg.MODEL.SOLOV2.PRIOR_PROB
         bias_init = float(-math.log((1 - prior_prob) / prior_prob))
